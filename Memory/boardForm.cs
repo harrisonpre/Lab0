@@ -70,6 +70,12 @@ namespace Memory
         {
             string value1 = GetCardValue(index1);
             string suit1 = GetCardSuit(index1);
+            string value2 = GetCardValue(index2);
+            string suit2 = GetCardSuit(index2);
+
+            if (value1 != value2 || suit1 != suit2)
+                return false;
+
             return true;
         }
 
@@ -93,6 +99,13 @@ namespace Memory
         // TODO:  students should write this one
         private void ShuffleCards()
         {
+            for (int i = 1; i < 20; i++)
+                {
+                    Random generator = new Random();
+                    int randomCardIndex = generator.Next(1, 20);
+                    string randomCardName = GetCardFilename(randomCardIndex);
+                    SetCardFilename(i, randomCardName);
+                }
         }
 
         // This method loads (shows) an image in a picture box.  Assumes that filenames
