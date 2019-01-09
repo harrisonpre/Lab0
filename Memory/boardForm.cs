@@ -99,12 +99,25 @@ namespace Memory
         // TODO:  students should write this one
         private void ShuffleCards()
         {
-            for (int i = 1; i < 20; i++)
+            Random generator = new Random();
+
+            for (int i = 1; i <= 20; i++)
+
                 {
-                    Random generator = new Random();
+                //get card 1 by 1
+                //get random
+                //swap
+
+                //temp = 1st
+                //get 2nd
+                //set 1st to 2nd
+                //set 2nd to temp
+
+                    string currentName = GetCardFilename(i);
                     int randomCardIndex = generator.Next(1, 20);
                     string randomCardName = GetCardFilename(randomCardIndex);
                     SetCardFilename(i, randomCardName);
+                    SetCardFilename(randomCardIndex, currentName);
                 }
         }
 
@@ -114,6 +127,14 @@ namespace Memory
         {
             PictureBox card = GetCard(i);
             card.Image = Image.FromFile(System.Environment.CurrentDirectory + "\\Cards\\" + GetCardFilename(i));
+        }
+
+        private void LoadAllCards()
+        {
+            for (int i = 1; i <= 20; i++)
+            {
+                LoadCard(i);
+            }
         }
 
         // This method loads the image for the back of a card in a picture box
@@ -195,6 +216,11 @@ namespace Memory
              *      to make sure that the cards are loaded successfully and that
              *      they're shuffled.  If you get all 2s, something is wrong.
             */
+
+            FillCardFilenames();
+            ShuffleCards();
+            LoadAllCards();
+
         }
 
         private void card_Click(object sender, EventArgs e)
