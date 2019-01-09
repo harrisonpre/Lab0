@@ -68,6 +68,8 @@ namespace Memory
         // TODO:  students should write this one
         private bool IsMatch(int index1, int index2)
         {
+            string value1 = GetCardValue(index1);
+            string suit1 = GetCardSuit(index1);
             return true;
         }
 
@@ -155,7 +157,11 @@ namespace Memory
 
         private void EnableAllCards()
         {
-
+            for (int i = 1; i <= 20; i++)
+            {
+                PictureBox card = GetCard(i);
+                card.Click += new System.EventHandler(this.card_Click);
+            }
         }
     
         private void EnableAllVisibleCards()
