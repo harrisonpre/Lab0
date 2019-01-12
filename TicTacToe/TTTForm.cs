@@ -70,8 +70,12 @@ namespace TicTacToe
         //* TODO:  finish all of these that return true
         private bool IsAnyRowWinner()
         {
-
-            return true;
+            for (int row = 0; row < SIZE; row++)
+            {
+                if (IsRowWinner(row))
+                    return true;
+            }
+            return false;
         }
 
         private bool IsColumnWinner(int col)
@@ -89,8 +93,12 @@ namespace TicTacToe
 
         private bool IsAnyColumnWinner()
         {
-
-            return true;
+            for (int col = 0; col < SIZE; col++)
+            {
+                if (IsColumnWinner(col))
+                    return true;
+            }
+            return false;
         }
 
         private bool IsDiagonal1Winner()
@@ -121,11 +129,27 @@ namespace TicTacToe
 
         private bool IsAnyDiagonalWinner()
         {
-            return true;
+            if (IsDiagonal1Winner())
+                return true;
+            else if (IsDiagonal2Winner())
+                return true;
+            else
+                return false;
         }
 
         private bool IsFull()
         {
+            for (int row = 0; row < SIZE; row++)
+            {
+                for (int col = 0; col < SIZE; col++)
+                {
+                    Label square = GetSquare(row, col);
+                    if (square.Text == EMPTY)
+                    {
+                        return false;
+                    }
+                }
+            }
             return true;
         }
 
