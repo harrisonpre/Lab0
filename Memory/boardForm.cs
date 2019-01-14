@@ -148,13 +148,17 @@ namespace Memory
         // shows (loads) the backs of all of the cards
         private void LoadAllCardBacks()
         {
-
+            for (int i = 1; i <= 20; i++)
+            {
+                PictureBox card = GetCard(i);
+                card.Image = Image.FromFile(System.Environment.CurrentDirectory + "\\Cards\\black_back.jpg");
+            }
         }
 
         // Hides a picture box
         private void HideCard(int i)
         {
-
+           
         }
 
         private void HideAllCards()
@@ -165,7 +169,9 @@ namespace Memory
         // shows a picture box
         private void ShowCard(int i)
         {
-
+            PictureBox card = GetCard(i);
+            string cardName = GetCardFilename(i);
+            card.Image = Image.FromFile(System.Environment.CurrentDirectory + "\\Cards\\" + cardName + ".jpg");
         }
 
         private void ShowAllCards()
@@ -219,7 +225,7 @@ namespace Memory
 
             FillCardFilenames();
             ShuffleCards();
-            LoadAllCards();
+            LoadAllCardBacks();
 
         }
 
@@ -227,6 +233,8 @@ namespace Memory
         {
             PictureBox card = (PictureBox)sender;
             int cardNumber = int.Parse(card.Name.Substring(4));
+
+            ShowCard(cardNumber);
 
             /* 
              * if the first card isn't picked yet
