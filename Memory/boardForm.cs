@@ -148,42 +148,35 @@ namespace Memory
         {
             for (int i = 1; i <= 20; i++)
             {
-                PictureBox card = GetCard(i);
-                card.Image = Image.FromFile(System.Environment.CurrentDirectory + "\\Cards\\black_back.jpg");
+                LoadCardBack(i);
             }
         }
 
         // Hides a picture box
         private void HideCard(int i)
         {
-            PictureBox card = GetCard(i);
-            card.Visible = false;
+            GetCard(i).Visible = false;
         }
 
         private void HideAllCards()
         {
             for (int i = 1; i <= 20; i++)
             {
-                PictureBox card = GetCard(i);
-                card.Visible = false;
+                HideCard(i);
             }
         }
 
         // shows a picture box
         private void ShowCard(int i)
         {
-            PictureBox card = GetCard(i);
-            string cardName = GetCardFilename(i);
-            card.Image = Image.FromFile(System.Environment.CurrentDirectory + "\\Cards\\" + cardName);
+            LoadCard(i);
         }
 
         private void ShowAllCards()
         {
             for (int i = 1; i <= 20; i++)
             {
-                PictureBox card = GetCard(i);
-                string cardName = GetCardFilename(i);
-                card.Image = Image.FromFile(System.Environment.CurrentDirectory + "\\Cards\\" + cardName);
+                ShowCard(i);
             }
         }
 
@@ -198,8 +191,7 @@ namespace Memory
         {
             for (int i = 1; i <= 20; i++)
             {
-                PictureBox card = GetCard(i);
-                card.Click -= new System.EventHandler(this.card_Click);
+                DisableCard(i);
             }
         }
 
@@ -213,8 +205,7 @@ namespace Memory
         {
             for (int i = 1; i <= 20; i++)
             {
-                PictureBox card = GetCard(i);
-                card.Click += new System.EventHandler(this.card_Click);
+                EnableCard(i);
             }
         }
 
@@ -224,7 +215,7 @@ namespace Memory
             {
                 PictureBox card = GetCard(i);
                 if (card.Visible)
-                    card.Click += new System.EventHandler(this.card_Click);
+                    EnableCard(i);
             }
         }
 
@@ -287,7 +278,7 @@ namespace Memory
 
             if (IsMatch(firstCardNumber, secondCardNumber))
             {
-                matches += 1;
+                matches++;
                 HideCard(firstCardNumber);
                 HideCard(secondCardNumber);
                 firstCardNumber = NOT_PICKED_YET;

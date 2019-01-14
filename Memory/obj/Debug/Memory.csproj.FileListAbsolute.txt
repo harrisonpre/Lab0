@@ -1,13 +1,3 @@
-C:/harrison/Lab0/Memory/bin/Debug/Memory.exe.config
-C:/harrison/Lab0/Memory/bin/Debug/Memory.exe
-C:/harrison/Lab0/Memory/bin/Debug/Memory.pdb
-C:/harrison/Lab0/Memory/obj/Debug/Memory.csprojAssemblyReference.cache
-C:/harrison/Lab0/Memory/obj/Debug/Memory.boardForm.resources
-C:/harrison/Lab0/Memory/obj/Debug/Memory.Properties.Resources.resources
-C:/harrison/Lab0/Memory/obj/Debug/Memory.csproj.GenerateResource.cache
-C:/harrison/Lab0/Memory/obj/Debug/Memory.csproj.CoreCompileInputs.cache
-C:/harrison/Lab0/Memory/obj/Debug/Memory.exe
-C:/harrison/Lab0/Memory/obj/Debug/Memory.pdb
 /Users/harrison/Documents/Git/Lab0/Memory/bin/Debug/Memory.exe.config
 /Users/harrison/Documents/Git/Lab0/Memory/bin/Debug/Memory.exe
 /Users/harrison/Documents/Git/Lab0/Memory/bin/Debug/Memory.pdb
@@ -28,3 +18,13 @@ C:\Users\harrison\Documents\GitHub\Lab0\Memory\obj\Debug\Memory.csproj.GenerateR
 C:\Users\harrison\Documents\GitHub\Lab0\Memory\obj\Debug\Memory.csproj.CoreCompileInputs.cache
 C:\Users\harrison\Documents\GitHub\Lab0\Memory\obj\Debug\Memory.exe
 C:\Users\harrison\Documents\GitHub\Lab0\Memory\obj\Debug\Memory.pdb
+C:\Harrison\Lab0\Memory\bin\Debug\Memory.exe.config
+C:\Harrison\Lab0\Memory\bin\Debug\Memory.exe
+C:\Harrison\Lab0\Memory\bin\Debug\Memory.pdb
+C:\Harrison\Lab0\Memory\obj\Debug\Memory.boardForm.resources
+C:\Harrison\Lab0\Memory\obj\Debug\Memory.Properties.Resources.resources
+C:\Harrison\Lab0\Memory\obj\Debug\Memory.csproj.GenerateResource.cache
+C:\Harrison\Lab0\Memory\obj\Debug\Memory.csproj.CoreCompileInputs.cache
+C:\Harrison\Lab0\Memory\obj\Debug\Memory.exe
+C:\Harrison\Lab0\Memory\obj\Debug\Memory.pdb
+C:\Harrison\Lab0\Memory\obj\Debug\Memory.csprojAssemblyReference.cache
