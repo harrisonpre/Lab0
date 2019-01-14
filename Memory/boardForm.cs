@@ -69,11 +69,9 @@ namespace Memory
         private bool IsMatch(int index1, int index2)
         {
             string value1 = GetCardValue(index1);
-            string suit1 = GetCardSuit(index1);
             string value2 = GetCardValue(index2);
-            string suit2 = GetCardSuit(index2);
 
-            if (value1 != value2 || suit1 != suit2)
+            if (value1 != value2)
                 return false;
 
             return true;
@@ -103,7 +101,7 @@ namespace Memory
 
             for (int i = 1; i <= 20; i++)
 
-                {
+            {
                 //get card 1 by 1
                 //get random
                 //swap
@@ -113,12 +111,12 @@ namespace Memory
                 //set 1st to 2nd
                 //set 2nd to temp
 
-                    string currentName = GetCardFilename(i);
-                    int randomCardIndex = generator.Next(1, 20);
-                    string randomCardName = GetCardFilename(randomCardIndex);
-                    SetCardFilename(i, randomCardName);
-                    SetCardFilename(randomCardIndex, currentName);
-                }
+                string currentName = GetCardFilename(i);
+                int randomCardIndex = generator.Next(1, 20);
+                string randomCardName = GetCardFilename(randomCardIndex);
+                SetCardFilename(i, randomCardName);
+                SetCardFilename(randomCardIndex, currentName);
+            }
         }
 
         // This method loads (shows) an image in a picture box.  Assumes that filenames
@@ -158,12 +156,17 @@ namespace Memory
         // Hides a picture box
         private void HideCard(int i)
         {
-           
+            PictureBox card = GetCard(i);
+            card.Visible = false;
         }
 
         private void HideAllCards()
         {
-
+            for (int i = 1; i <= 20; i++)
+            {
+                PictureBox card = GetCard(i);
+                card.Visible = false;
+            }
         }
 
         // shows a picture box
@@ -171,7 +174,7 @@ namespace Memory
         {
             PictureBox card = GetCard(i);
             string cardName = GetCardFilename(i);
-            card.Image = Image.FromFile(System.Environment.CurrentDirectory + "\\Cards\\" + cardName + ".jpg");
+            card.Image = Image.FromFile(System.Environment.CurrentDirectory + "\\Cards\\" + cardName);
         }
 
         private void ShowAllCards()
@@ -180,10 +183,8 @@ namespace Memory
             {
                 PictureBox card = GetCard(i);
                 string cardName = GetCardFilename(i);
-                card.Image = Image.FromFile(System.Environment.CurrentDirectory + "\\Cards\\" + cardName + ".jpg");
+                card.Image = Image.FromFile(System.Environment.CurrentDirectory + "\\Cards\\" + cardName);
             }
-        }
-
         }
 
         // disables a picture box
@@ -216,10 +217,15 @@ namespace Memory
                 card.Click += new System.EventHandler(this.card_Click);
             }
         }
-    
+
         private void EnableAllVisibleCards()
         {
-
+            for (int i = 1; i <= 20; i++)
+            {
+                PictureBox card = GetCard(i);
+                if (card.Visible)
+                    card.Click += new System.EventHandler(this.card_Click);
+            }
         }
 
         #endregion
@@ -255,28 +261,54 @@ namespace Memory
             }
             else
             {
-            secondCardNumber = cardNumber;
-            showCard(cardNumber);
-            disableAllCards();
-            //fliptimer
+                secondCardNumber = cardNumber;
+                ShowCard(cardNumber);
+                DisableAllCards();
+                flipTimer.Start();
             }
 
-        /* 
-         * if the first card isn't picked yet
-         *      save the first card index
-         *      load the card
-         *      disable the card
-         *  else (the user just picked the second card)
-         *      save the second card index
-         *      load the card
-         *      disable all of the cards
-         *      start the flip timer
-         *  end if
-        */
-    }
+            /* 
+             * if the first card isn't picked yet
+             *      save the first card index
+             *      load the card
+             *      disable the card
+             *  else (the user just picked the second card)
+             *      save the second card index
+             *      load the card
+             *      disable all of the cards
+             *      start the flip timer
+             *  end if
+            */
+        }
 
         private void flipTimer_Tick(object sender, EventArgs e)
         {
+            flipTimer.Stop();
+
+            if (IsMatch(firstCardNumber, secondCardNumber))
+            {
+                matches += 1;
+                HideCard(firstCardNumber);
+                HideCard(secondCardNumber);
+                firstCardNumber = NOT_PICKED_YET;
+                secondCardNumber = NOT_PICKED_YET;
+                if (matches == 10)
+                {
+                    MessageBox.Show("You win!");
+                }
+                else
+                {
+                    EnableAllVisibleCards();
+                }
+            }
+            else
+            {
+                LoadCardBack(firstCardNumber);
+                LoadCardBack(secondCardNumber);
+                firstCardNumber = NOT_PICKED_YET;
+                secondCardNumber = NOT_PICKED_YET;
+                EnableAllVisibleCards();
+            }
             /*
              * stop the flip timer
              * if the first card and second card are a match
