@@ -176,23 +176,36 @@ namespace Memory
 
         private void ShowAllCards()
         {
+            for (int i = 1; i <= 20; i++)
+            {
+                PictureBox card = GetCard(i);
+                string cardName = GetCardFilename(i);
+                card.Image = Image.FromFile(System.Environment.CurrentDirectory + "\\Cards\\" + cardName + ".jpg");
+            }
+        }
 
         }
 
         // disables a picture box
         private void DisableCard(int i)
         {
-
+            PictureBox card = GetCard(i);
+            card.Click -= new System.EventHandler(this.card_Click);
         }
 
         private void DisableAllCards()
         {
-
+            for (int i = 1; i <= 20; i++)
+            {
+                PictureBox card = GetCard(i);
+                card.Click -= new System.EventHandler(this.card_Click);
+            }
         }
 
         private void EnableCard(int i)
         {
-
+            PictureBox card = GetCard(i);
+            card.Click += new System.EventHandler(this.card_Click);
         }
 
         private void EnableAllCards()
@@ -234,21 +247,33 @@ namespace Memory
             PictureBox card = (PictureBox)sender;
             int cardNumber = int.Parse(card.Name.Substring(4));
 
-            ShowCard(cardNumber);
+            if (firstCardNumber == NOT_PICKED_YET)
+            {
+                firstCardNumber = cardNumber;
+                ShowCard(cardNumber);
+                DisableCard(cardNumber);
+            }
+            else
+            {
+            secondCardNumber = cardNumber;
+            showCard(cardNumber);
+            disableAllCards();
+            //fliptimer
+            }
 
-            /* 
-             * if the first card isn't picked yet
-             *      save the first card index
-             *      load the card
-             *      disable the card
-             *  else (the user just picked the second card)
-             *      save the second card index
-             *      load the card
-             *      disable all of the cards
-             *      start the flip timer
-             *  end if
-            */
-        }
+        /* 
+         * if the first card isn't picked yet
+         *      save the first card index
+         *      load the card
+         *      disable the card
+         *  else (the user just picked the second card)
+         *      save the second card index
+         *      load the card
+         *      disable all of the cards
+         *      start the flip timer
+         *  end if
+        */
+    }
 
         private void flipTimer_Tick(object sender, EventArgs e)
         {
